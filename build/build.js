@@ -53,7 +53,7 @@ marked.setOptions({
 });
 
 const deployDir = path.resolve(process.cwd(), '.deploy');
-const faviconPath = path.resolve(process.cwd(), 'template', 'img', 'favicon.ico');
+const dockerPath = path.resolve(process.cwd(), 'template', 'img', 'docker.ico');
 const rootIndexJSPath = path.resolve(process.cwd(), 'template', 'js', 'index.js');
 const dataJsonPath = path.resolve(process.cwd(), 'dist', 'data.json');
 const cssPath = path.resolve(deployDir, 'css', 'index.css');
@@ -68,7 +68,7 @@ mkdirs(deployDir)
     ensureDir(path.resolve(dir, 'css'));
     ensureDir(path.resolve(dir, 'c'));
   })
-  .then(() => FS.copySync(faviconPath, path.resolve(deployDir, 'img', 'favicon.ico')))
+  .then(() => FS.copySync(dockerPath, path.resolve(deployDir, 'img', 'docker.ico')))
   .then(() => FS.readFileSync(rootIndexJSPath))
   .then((data) => {
     FS.outputFileSync(path.resolve(deployDir, 'js', 'index.js'), UglifyJS.minify(data.toString()).code)
@@ -85,8 +85,8 @@ mkdirs(deployDir)
     path.resolve(deployDir, 'index.html'),
     {
       p: '/index.html',
-      n: 'Linux命令搜索引擎',
-      d: '最专业的Linux命令大全，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。',
+      n: 'Docker命令搜索引擎',
+      d: 'Docker命令大全',
       command_length: markdownIndexData.length
     }
   ))
@@ -96,7 +96,7 @@ mkdirs(deployDir)
     {
       p: '/list.html',
       n: '搜索',
-      d: '最专业的Linux命令大全，命令搜索引擎，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。',
+      d: 'Docker命令搜索引擎。',
       command_length: markdownIndexData.length
     }
   ))
@@ -106,7 +106,7 @@ mkdirs(deployDir)
     {
       p: '/hot.html',
       n: '搜索',
-      d: '最专业的Linux命令大全，命令搜索引擎，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。',
+      d: 'Docker命令搜索引擎。',
       arr: markdownIndexData,
       command_length: markdownIndexData.length
     }
